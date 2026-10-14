@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Yandex Disk Downloader",
+  "description": "Пакетная загрузка из публичных и личных папок Яндекс Диска с очередью, историей и прогрессом.",
+  "version": "1.0.2",
+  "minimum_chrome_version": "120",
+  "permissions": ["downloads", "storage", "alarms", "notifications", "tabs", "activeTab"],
+  "host_permissions": [
+    "https://cloud-api.yandex.net/*",
+    "https://*.yandex.ru/*",
+    "https://*.yandex.com/*",
+    "https://*.yandex.net/*",
+    "https://*.yandexcdn.com/*",
+    "https://*.yandexcloud.net/*"
+  ],
+  "background": {"service_worker": "sw.js"},
+  "action": {"default_title": "Yandex Disk Downloader", "default_popup": "popup.html", "default_icon": "icons/48.png"},
+  "options_page": "dashboard.html",
+  "icons": {"16": "icons/16.png", "48": "icons/48.png", "128": "icons/128.png"},
+  "content_scripts": [{
+    "matches": ["https://disk.yandex.ru/*", "https://disk.yandex.com/*"],
+    "js": ["content.js"],
+    "run_at": "document_idle"
+  }]
+}
